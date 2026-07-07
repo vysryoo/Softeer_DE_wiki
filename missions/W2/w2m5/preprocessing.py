@@ -15,7 +15,7 @@ TOKENIZER_PATH = "tokenizer.json"
 OUTPUT_PATH = "train_val_dataset.npz"
 
 RANDOM_STATE = 42
-SAMPLE_SIZE = 100_000
+SAMPLE_SIZE = 500_000
 COLUMNS = ["target", "ids", "date", "flag", "user", "text"]
 
 VOCAB_SIZE = 10_000
@@ -36,7 +36,29 @@ EMOJI_PATTERN = re.compile(
 NON_ALPHA_PATTERN = re.compile(r"[^a-z\s]")
 MULTI_SPACE_PATTERN = re.compile(r"\s+")
 
+CONTRACTIONS = {
+    "don't": "do not", "doesn't": "does not", "didn't": "did not",
+    "can't": "can not", "won't": "will not", "wouldn't": "would not",
+    "couldn't": "could not", "shouldn't": "should not", "mustn't": "must not",
+    "isn't": "is not", "aren't": "are not", "wasn't": "was not", "weren't": "were not",
+    "haven't": "have not", "hasn't": "has not", "hadn't": "had not", "ain't": "am not",
+    "i'm": "i am", "you're": "you are", "he's": "he is", "she's": "she is",
+    "it's": "it is", "we're": "we are", "they're": "they are",
+    "i've": "i have", "you've": "you have", "we've": "we have", "they've": "they have",
+    "i'll": "i will", "you'll": "you will", "he'll": "he will", "she'll": "she will",
+    "we'll": "we will", "they'll": "they will",
+    "i'd": "i would", "you'd": "you would", "he'd": "he would", "she'd": "she would",
+    "we'd": "we would", "they'd": "they would",
+    "that's": "that is", "what's": "what is", "let's": "let us",
+    "who's": "who is", "there's": "there is", "here's": "here is",
+}
+CONTRACTIONS_PATTERN = re.compile(
+    r"\b(" + "|".join(re.escape(k) for k in CONTRACTIONS) + r")\b"
+)
 
+
+def expand_contractions(text: str) -> str:
+    return CONTRACTIONS_PATTERN.sub(lambda m: CONTRACTIONS[m.group(0)], text)
 
 
 def get_balanced(
@@ -72,6 +94,7 @@ def clean_text(text: str) -> str:
     text = URL_PATTERN.sub(" ", text)
     text = MENTION_PATTERN.sub(" ", text)
     text = EMOJI_PATTERN.sub(" ", text)
+    text = expand_contractions(text)
     text = NON_ALPHA_PATTERN.sub(" ", text)
     text = MULTI_SPACE_PATTERN.sub(" ", text).strip()
     return text

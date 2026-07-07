@@ -1,4 +1,3 @@
-
 import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import Sequential
@@ -11,7 +10,7 @@ MAX_LEN = 100
 EMBEDDING_DIM = 128
 LSTM_UNITS = 64
 DROPOUT_RATE = 0.5
-EPOCHS = 10
+EPOCHS = 7
 BATCH_SIZE = 256
 
 NEUTRAL_LOW = 0.4
