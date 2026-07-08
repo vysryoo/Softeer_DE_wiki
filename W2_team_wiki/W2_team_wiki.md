@@ -73,7 +73,7 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 | `val_loss` | 검증 데이터 손실 |
 
 
-모델 학습 결과는 다음과 같다
+모델 학습 결과는 다음과 같다.
 <br>
 <img src="./model_compare.png" width="500">
 <br>
