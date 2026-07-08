@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Input, Embedding, Bidirectional, LSTM, Dropout, Dense
-from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.callbacks import CSVLogger, EarlyStopping
 from tensorflow.keras.preprocessing.text import tokenizer_from_json
 
 VOCAB_SIZE = 10_000
@@ -10,8 +10,9 @@ MAX_LEN = 100
 EMBEDDING_DIM = 128
 LSTM_UNITS = 64
 DROPOUT_RATE = 0.5
-EPOCHS = 7
+EPOCHS = 5
 BATCH_SIZE = 256
+HISTORY_CSV_PATH = "training_history.csv"
 
 NEUTRAL_LOW = 0.4
 NEUTRAL_HIGH = 0.6
@@ -67,9 +68,9 @@ def main() -> None:
     model.summary()
 
     early_stopping = EarlyStopping(
-        monitor="val_loss", patience=3, restore_best_weights=True
+        monitor="val_loss", patience=3
     )
-
+    csv_logger = CSVLogger(HISTORY_CSV_PATH, append=False)
 
     model.fit(
         X_train,
@@ -77,7 +78,7 @@ def main() -> None:
         validation_data=(X_val, y_val),
         epochs=EPOCHS,
         batch_size=BATCH_SIZE,
-        callbacks=[early_stopping],
+        callbacks=[early_stopping, csv_logger],
         verbose=1,
     )
 

@@ -16,7 +16,7 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 3. 현대자동차 유튜브 댓글 웹스크래핑
 4. 스크래핑 댓글에 감정 라벨 추가
 5. car_name별 긍정/부정 비율 비교
-6. 선정된 차종의 긍정/부정에 의한 장단점
+6. 긍정/부정 word cloud
 7. 비즈니스 관점의 결론 도출
 8. 한계점 및 개선 방향
 9. 결론
@@ -61,12 +61,6 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 
 각 팀원은 Twitter 감정분석 데이터를 기반으로 서로 다른 감정분석 모델을 학습하였다.
 
-| 모델 |
-|---|
-| Bidirectional LSTM |
-| LSTM |
-| TF-IDF + Logistic Regression |
-
 모델 비교를 위해 각 모델의 학습 과정에서 epoch별 성능 지표를 CSV로 저장하였다.
 
 저장한 지표는 다음과 같다.
@@ -77,6 +71,10 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 | `val_acc` | 검증 데이터 정확도 |
 | `train_loss` | 학습 데이터 손실 |
 | `val_loss` | 검증 데이터 손실 |
+
+
+모델 학습 결과는 다음과 같다: 
+<img src="./model_compare.png" width="400">
 
 모델 평가는 단순히 train accuracy가 높은 모델을 선택하지 않고, 다음 기준을 함께 고려하였다.
 
@@ -102,7 +100,7 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 - 유튜브 댓글처럼 길이가 길고 문맥이 섞인 문장에 더 적합하다고 판단하였다.
 ```
 
-![model-performance](./model_performance.png)
+<img src="./model_compare.png" width="400">
 
 ---
 
@@ -142,12 +140,12 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 ```text
 IONIQ 9
 IONIQ 6
-ELANTRA
+AVANTE
 SONATA
 TUCSON
 KONA
 INSTER
-Azera
+SONATA
 ```
 
 각 차종별로 positive, neutral, negative 댓글 수를 집계하고, 전체 댓글 수 대비 비율을 계산하였다.
@@ -159,7 +157,8 @@ Azera
 
 이 기준으로 가장 긍정적인 차종과 가장 부정적인 차종을 선정하였다.
 
-![positive-negative](./positive_negative.png)
+
+<img src="./positive_negative.png" width="400">
 
 ### 5.1 가장 긍정적인 차종
 
@@ -185,42 +184,7 @@ AVANTE 부정 비율: 43.5%
 
 ## 6. WordCloud 기반 키워드 분석
 
-차종별 감정 비율만으로는 왜 긍정적 또는 부정적으로 평가되었는지 알기 어렵다. 따라서 가장 긍정적인 차종과 가장 부정적인 차종을 대상으로 주요 키워드를 분석하였다.
-
-더 명확한 감정 키워드를 보기 위해 threshold를 더 보수적으로 조정하였다.
-
-```text
-Negative: probability ≤ 0.2
-Positive: probability ≥ 0.8
-```
-
-이렇게 한 이유는 약한 긍정/부정 댓글보다, 모델이 강하게 긍정 또는 부정으로 판단한 댓글에서 더 뚜렷한 키워드를 추출하기 위해서이다.
-
-### 6.1 IONIQ 9 긍정 댓글 키워드
-
-IONIQ 9의 긍정 댓글에서는 차량의 장점과 기대감을 나타내는 단어들이 등장하였다.
-
-> 여기에 IONIQ 9 positive WordCloud 이미지 첨부
-
-해석 예시:
-
-```text
-IONIQ 9은 전기 SUV 차종으로서 공간성, 디자인, 신차 기대감과 관련된 긍정 반응이 많이 나타난 것으로 해석할 수 있다.
-```
-
-### 6.2 ELANTRA 부정 댓글 키워드
-
-ELANTRA의 부정 댓글에서는 차량의 단점 또는 불만과 관련된 단어들이 상대적으로 많이 등장하였다.
-
-> 여기에 ELANTRA negative WordCloud 이미지 첨부
-
-해석 예시:
-
-```text
-ELANTRA는 디자인, 가격, 성능, 기존 모델과의 비교 등에서 부정적인 반응이 나타났을 가능성이 있다.
-```
-
-실제 해석은 WordCloud에 나타난 주요 단어를 기준으로 구체화한다.
+![word_cloud](./word_cloud.png)
 
 ---
 
