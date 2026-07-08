@@ -100,7 +100,7 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 - 유튜브 댓글처럼 길이가 길고 문맥이 섞인 문장에 더 적합하다고 판단하였다.
 ```
 
-<img src="./model_compare.png" width="400">
+<img src="./model_performance.png" width="400">
 
 ---
 
