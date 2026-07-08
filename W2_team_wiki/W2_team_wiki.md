@@ -74,9 +74,10 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 
 
 모델 학습 결과는 다음과 같다.
-<br>
-<img src="./model_compare.png" width="500">
-<br>
+
+<div align=center>
+<img src="./model_compare.png" width="500" >
+</div>
 
 
 
@@ -104,7 +105,9 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 - 유튜브 댓글처럼 길이가 길고 문맥이 섞인 문장에 더 적합하다고 판단하였다.
 ```
 
+<div align=center>
 <img src="./model_performance.png" width="600">
+</div>
 
 ---
 
@@ -161,8 +164,9 @@ SONATA
 
 이 기준으로 가장 긍정적인 차종과 가장 부정적인 차종을 선정하였다.
 
-
+<div align=center>
 <img src="./positive_negative.png" width="400">
+</div>
 
 ### 5.1 가장 긍정적인 차종
 
@@ -188,7 +192,9 @@ AVANTE 부정 비율: 43.5%
 
 ## 6. WordCloud 긍정 부정 키워드
 
-![word_cloud](./word_cloud.png)
+<div align=center>
+<img src="./word_cloud.png" alt="word_cloud">
+</div>
 
 
 긍정 댓글과 부정 댓글 모두에서 design과 looks라는 단어가 높은 빈도로 등장했습니다. 이는 디자인이 소비자들의 가장 큰 관심사라는 의미이며, 동시에 호불호도 크게 갈린다는 것을 보여줍니다. 따라서 기업은 디자인을 적극적으로 마케팅에 활용하는 한편, 부정적인 의견이 집중되는 부분은 다음 모델 개발 과정에서 개선 대상으로 검토할 수 있습니다.
