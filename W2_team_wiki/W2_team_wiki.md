@@ -30,10 +30,14 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 
 모델 학습에는 Sentiment140 감정분석 데이터셋을 사용하였다. 해당 데이터는 문장과 감정 라벨로 구성되어 있으며, 라벨은 다음과 같다.
 
+<div align=center>
+
 | 라벨 | 의미 |
 |---:|---|
 | 0 | Negative |
 | 4 | Positive |
+
+</div>
 
 해당 데이터에는 중립 라벨이 존재하지 않기 때문에, 기본 모델은 긍정/부정 이진 분류 모델로 학습되었다.
 후속 단계에서 중립 라벨에 대한 구체적인 논의를 진행하였다.
@@ -44,6 +48,8 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 
 수집한 주요 컬럼은 다음과 같다.
 
+<div align=center>
+
 | 컬럼명 | 설명 |
 |---|---|
 | `car_name` | 개별 차종명 |
@@ -52,6 +58,8 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 | `text` | 댓글 본문 |
 | `like_count` | 댓글 좋아요 수 |
 | `sentiment` | 모델이 예측한 감정 라벨 |
+
+</div>
 
 이번 프로젝트에서는 `car_name`을 핵심 분석 단위로 사용하였다. `car_type`은 SUV와 Sedan의 큰 흐름을 보기 위한 보조 지표로만 사용하였다.
 
@@ -65,6 +73,8 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 
 저장한 지표는 다음과 같다.
 
+<div align=center>
+
 | 지표 | 의미 |
 |---|---|
 | `train_acc` | 학습 데이터 정확도 |
@@ -72,11 +82,14 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 | `train_loss` | 학습 데이터 손실 |
 | `val_loss` | 검증 데이터 손실 |
 
+</div>
+
 
 모델 학습 결과는 다음과 같다.
 
 <div align=center>
 <img src="./model_compare.png" width="500" >
+<p><sub>model_compare.png</sub></p>
 </div>
 
 
@@ -107,6 +120,7 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 
 <div align=center>
 <img src="./model_performance.png" width="600">
+<p><sub>model_performance.png</sub></p>
 </div>
 
 ---
@@ -119,11 +133,15 @@ SUV와 Sedan의 전반적인 경향을 확인할 수는 있지만, 실제 비즈
 
 모델의 positive probability를 기준으로 다음과 같이 라벨을 부여하였다.
 
+<div align=center>
+
 | 조건 | 라벨 |
 |---|---|
 | probability ≤ 0.4 | Negative |
 | 0.4 < probability < 0.6 | Neutral |
 | probability ≥ 0.6 | Positive |
+
+</div>
 
 ### 4.1 중립 라벨
 중립 라벨을 추가한 이유는 유튜브 댓글에는 다음과 같은 정보성 댓글이 많이 포함되어 있기 때문이다.
@@ -166,6 +184,7 @@ SONATA
 
 <div align=center>
 <img src="./positive_negative.png" width="400">
+<p><sub>positive_negative.png</sub></p>
 </div>
 
 ### 5.1 가장 긍정적인 차종
@@ -194,6 +213,7 @@ AVANTE 부정 비율: 43.5%
 
 <div align=center>
 <img src="./word_cloud.png" alt="word_cloud">
+<p><sub>word_cloud.png</sub></p>
 </div>
 
 
