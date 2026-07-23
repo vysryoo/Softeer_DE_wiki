@@ -125,14 +125,14 @@
 ## 8. 대시보드
 
 **메인 대시보드 — AV로 얼마나 대체하는가**
-![메인 대시보드](output/figures/main_dashboard.png)
+![메인 대시보드](./main_dashboard.png)
 
 **자치구별 상세 — 존별 신고 분포 × 시간대별 유휴 AV 발생량**
-![자치구별 상세](output/figures/borough_detail.png)
+![자치구별 상세](./borough_detail.png)
 
 
 **헛걸음 신고 분포 vs 심야 유휴 차량 분포 (지도)**
-![지도 비교](output/figures/map_wasted_vs_idle.png)
+![지도 비교](./map_wasted_vs_idle.png)
 붉게 표시된 신고 밀집 지역(맨해튼 북부·퀸즈 일부·스태튼아일랜드 서부)과, 진하게 표시된 심야 유휴 차량 밀집 지역이 서로 다른 소수의 존에 집중돼 있고 겹치지 않는다는 점은, **AV 배차가 그냥 대기 중인 차량을 그대로 쓰는 것이 아니라 검증 우회 동선을 능동적으로 설계해야 함**을 시사함
 
 ---
