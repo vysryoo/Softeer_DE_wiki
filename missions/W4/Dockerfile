@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     wget \
     tar \
+    fonts-nanum \
     && rm -rf /var/lib/apt/lists/*
 
 # 환경 변수 설정
@@ -25,7 +26,10 @@ RUN wget -qO- "https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spar
     && mv /opt/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} ${SPARK_HOME}
 
 # 분석/테스트에 필요한 Python 패키지 설치
-RUN pip3 install --no-cache-dir pyspark==3.4.1 pandas numpy scipy pyarrow pytest
+RUN pip3 install --no-cache-dir \
+    pyspark==3.4.1 pandas numpy scipy pyarrow pytest \
+    matplotlib geopandas shapely \
+    jupyter nbconvert ipykernel
 
 # 작업 디렉토리 설정
 WORKDIR ${SPARK_HOME}
