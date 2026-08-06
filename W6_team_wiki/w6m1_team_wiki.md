@@ -106,7 +106,7 @@ Offset(시작·끝 인덱스) 방식으로 수집한다.
 ### PK 결정
 - 기존 속성으로는 고유하게 행을 구분할 수 없어서 새롭게 인공키를 만드는 것으로 합의.
 ### 핵심 속성 처리
-- RENT_DT, RENT_ID, RENT_TYPE, GENDER_CD, AGE_TYPE 이상치거나 결측치이면 행 자체를 저장하지 않는다.
+- RENT_DT, RENT_ID, RENT_TYPE, AGE_TYPE 이상치거나 결측치이면 행 자체를 저장하지 않는다.
 ### Null로 변환 후 저장 (로그 기록)
 - 측정 컬럼(`USE_CNT, EXER_AMT, CARBON_AMT, MOVE_METER, MOVE_TIME`)의 음수 값 → NULL 처리 (행은 유지)
 - 측정 컬럼의 숫자 변환 실패 값 → NULL 처리 (행은 유지)
